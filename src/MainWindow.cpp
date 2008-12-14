@@ -1,11 +1,10 @@
-#include "aumainwindow.h"
-#include "aumdiarea.h"
-#include "aueditsubwindow.h"
+#include "MainWindow.h"
+#include "MDIArea.h"
+#include "EditSubWindow.h"
 
 #include <iostream>
 
-void AuMainWindow::createActions()
-{
+void MainWindow::createActions() {
 	fileNewAct = new QAction("&New", this);
 	fileNewAct->setShortcut(tr("Ctrl+N"));
 	fileNewAct->setStatusTip("Create a new file");
@@ -58,8 +57,7 @@ void AuMainWindow::createActions()
 
 }
 
-void AuMainWindow::createFileMenu()
-{
+void MainWindow::createFileMenu() {
 	fileMenu = menuBar->addMenu("&File");
 	fileMenu->addAction(fileNewAct);
 	fileMenu->addAction(fileOpenAct);
@@ -68,8 +66,7 @@ void AuMainWindow::createFileMenu()
 	fileMenu->addAction(fileExitAct);
 }
 
-void AuMainWindow::createEditMenu()
-{
+void MainWindow::createEditMenu() {
 	editMenu = menuBar->addMenu("&Edit");
 	editMenu->addAction(editCutAct);
 	editMenu->addAction(editCopyAct);
@@ -78,68 +75,60 @@ void AuMainWindow::createEditMenu()
 	editMenu->addAction(editSilenceAct);
 }
 
-void AuMainWindow::createMenuBar()
-{
+void MainWindow::createMenuBar() {
 	menuBar = new QMenuBar(this);
 	setMenuBar(menuBar);
 }
 
-void AuMainWindow::createFileToolBar()
-{
+void MainWindow::createFileToolBar() {
 	fileToolBar = new QToolBar(this);
 	fileToolBar->addAction(fileNewAct);
 	fileToolBar->addAction(fileOpenAct);
 	fileToolBar->addAction(fileSaveAct);
 	fileToolBar->addAction(fileSaveAsAct);
 	fileToolBar->addAction(fileExitAct);
-
 	addToolBar(fileToolBar);
 }
 
-void AuMainWindow::createEditToolBar()
-{
+void MainWindow::createEditToolBar() {
 	editToolBar = new QToolBar(this);
 	editToolBar->addAction(editCutAct);
 	editToolBar->addAction(editCopyAct);
 	editToolBar->addAction(editPasteAct);
 	editToolBar->addAction(editCropAct);
 	editToolBar->addAction(editSilenceAct);
-
 	addToolBar(editToolBar);
 }
 
-void AuMainWindow::newFile() { 
+void MainWindow::newFile() {
    std::cout << "Creating new window" << std::endl; 
-   AuEditSubWindow *newEditWindow = new AuEditSubWindow(mdiMain);
-   mdiMain->addSubWindow(newEditWindow);
+   EditSubWindow *newEditWindow = new EditSubWindow(mdiMain);
+   newEditWindow->show();
+   QMdiSubWindow *subWindow = mdiMain->addSubWindow(newEditWindow);
+   subWindow->setAttribute(Qt::WA_DeleteOnClose);
+   subWindow->show();
 }
 
-void AuMainWindow::open() { std::cout << "'open' not implemented" << std::endl; }
-void AuMainWindow::save() { std::cout << "'save' not implemented" << std::endl; }
-void AuMainWindow::saveAs() { std::cout << "'saveAs' not implemented" << std::endl; }
+void MainWindow::open() { std::cout << "'open' not implemented" << std::endl; }
+void MainWindow::save() { std::cout << "'save' not implemented" << std::endl; }
+void MainWindow::saveAs() { std::cout << "'saveAs' not implemented" << std::endl; }
 
-void AuMainWindow::cut() { std::cout << "'cut' not implemented" << std::endl; }
-void AuMainWindow::copy() { std::cout << "'copy' not implemented" << std::endl; }
-void AuMainWindow::paste() { std::cout << "'paste' not implemented" << std::endl; }
-void AuMainWindow::crop() { std::cout << "'crop' not implemented" << std::endl; }
-void AuMainWindow::silence() { std::cout << "'silence' not implemented" << std::endl; }
+void MainWindow::cut() { std::cout << "'cut' not implemented" << std::endl; }
+void MainWindow::copy() { std::cout << "'copy' not implemented" << std::endl; }
+void MainWindow::paste() { std::cout << "'paste' not implemented" << std::endl; }
+void MainWindow::crop() { std::cout << "'crop' not implemented" << std::endl; }
+void MainWindow::silence() { std::cout << "'silence' not implemented" << std::endl; }
 
-AuMainWindow::AuMainWindow(QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	resize(800, 600);
-	
-	mdiMain = new AuMdiArea(this);
-
-
+	mdiMain = new MdiArea(this);
 	createActions();
-
 	createFileToolBar();
 	createEditToolBar();
-
 	createMenuBar();
 	createFileMenu();
 	createEditMenu();
-
 	setCentralWidget(mdiMain);
 	setStatusBar(statusBar());
 
@@ -152,7 +141,7 @@ AuMainWindow::AuMainWindow(QWidget *parent) : QMainWindow(parent)
 	*/
 }
 
-AuMainWindow::~AuMainWindow()
+MainWindow::~MainWindow()
 {
 	delete fileNewAct;
 	delete fileOpenAct;
@@ -164,14 +153,10 @@ AuMainWindow::~AuMainWindow()
 	delete editPasteAct;
 	delete editCropAct;
 	delete editSilenceAct;
-
 	delete fileMenu;
 	delete editMenu;
 	delete menuBar;
-
 	delete fileToolBar;
 	delete editToolBar;
-
 	delete mdiMain;
-
 }

@@ -4,18 +4,14 @@
 #include <QtGui>
 #include <QMdiArea>
 
-class AuMdiArea : public QMdiArea
+class MdiArea : public QMdiArea
 {
-	
 
 	public:
-		AuMdiArea (QWidget *parent = 0);
+		MdiArea (QWidget *parent = 0);
 
 	private:
 		
 };
 
-
 #endif /* _AUMDIAREA_H_ */
-
-

@@ -1,20 +1,24 @@
-#include "buffer.h"
+#ifndef _WAVEDISPLAY_H_
 
-#include <QWidget>
+#define _WAVEDISPLAY_H_
+#include "Buffer.h"
 
-class AuWaveDisplay : public QWidget
-{
+#include <QRect>
+#include <QFrame>
+
+class WaveDisplay : public QFrame {
    Q_OBJECT
 
    protected:
+      QImage *image;
       Buffer *buffer;
       long offset;
       long scale;
 
    public:
       // Constructor
-		AuWaveDisplay (QWidget* parent = 0);
-      ~AuWaveDisplay();
+		WaveDisplay (QWidget* parent = 0);
+      ~WaveDisplay();
 
       // Set the audio buffer that the widget should display
       void setBuffer(Buffer *buffer);
@@ -37,5 +41,7 @@ class AuWaveDisplay : public QWidget
 
    protected:
       void paintEvent(QPaintEvent *event);
+//      void updateImage(const QRect &region);
 		
 };
+#endif /* _WAVEDISPLAY.H_ */

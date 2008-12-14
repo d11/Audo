@@ -1,11 +1,18 @@
+#ifndef _MAINWINDOW_H_
+
+#define _MAINWINDOW_H_
+
+
+
+
 #include <QtGui>
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QToolBar>
 
-#include "aumdiarea.h"
+#include "MDIArea.h"
 
-class AuMainWindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 
@@ -21,8 +28,8 @@ class AuMainWindow : public QMainWindow
 		void silence();
 
 	public:
-		AuMainWindow(QWidget *parent = 0);
-		~AuMainWindow();
+		MainWindow(QWidget *parent = 0);
+		~MainWindow();
 
 	private:
 		void createActions();
@@ -42,15 +49,12 @@ class AuMainWindow : public QMainWindow
 		QAction *editPasteAct;
 		QAction *editCropAct;
 		QAction *editSilenceAct;
-
 		QMenu *fileMenu;
 		QMenu *editMenu;
 		QMenuBar *menuBar;
-
 		QToolBar *fileToolBar;
 		QToolBar *editToolBar;
-
-		AuMdiArea *mdiMain;
-
+		MdiArea *mdiMain;
 };
 
+#endif /* _MAINWINDOW.H_ */
