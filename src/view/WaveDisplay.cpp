@@ -11,18 +11,21 @@ WaveDisplay::WaveDisplay(QWidget *parent) : QFrame(parent) {
    setOffset(0);
    setScale(400); // Arbitrary; temp
 
-   resize(300, 100);
    setMinimumSize(200,100);
 
    setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
    setLineWidth(1);
 }
 
-WaveDisplay::~WaveDisplay() {
-}
+WaveDisplay::~WaveDisplay() { }
 
 void WaveDisplay::setBuffer(Buffer *buffer) {
    this->buffer = buffer;
+   if (NULL != buffer)
+      resize(buffer->getNumberOfSamples()/scale, 100);
+   else
+      resize(300, 100);
+
    update();
 }
 
@@ -60,7 +63,7 @@ void WaveDisplay::paintEvent(QPaintEvent *event) {
       qDebug() << toUpdate;
    } else {
       // Update every column of pixels in the region
-      for (int pixelH = toUpdate.left(); pixelH < toUpdate.right(); ++pixelH) {
+      for (int pixelH = toUpdate.left(); pixelH <= toUpdate.right(); ++pixelH) {
 
          if ((pixelH + 1)*scale < buffer->getNumberOfSamples()) {
             // Buffer has data to draw
@@ -76,11 +79,11 @@ void WaveDisplay::paintEvent(QPaintEvent *event) {
             // TODO: replace with painter transformations
             int pixelTop = (int)((1.0 - sampleMax)*0.5*height());
             int pixelBottom = (int)((1.0 - sampleMin)*0.5*height());
-            painter.setPen(Qt::black);
+            painter.setPen(Qt::lightGray);
             painter.drawLine(pixelH, 0, pixelH, pixelTop-1);
-            painter.setPen(Qt::white);
-            painter.drawLine(pixelH, pixelTop, pixelH, pixelBottom);
             painter.setPen(Qt::black);
+            painter.drawLine(pixelH, pixelTop, pixelH, pixelBottom);
+            painter.setPen(Qt::lightGray);
             painter.drawLine(pixelH, pixelBottom+1, pixelH, height());
          } else {
             // Beyond end of buffer

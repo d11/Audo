@@ -1,9 +1,5 @@
 #ifndef _MAINWINDOW_H_
-
 #define _MAINWINDOW_H_
-
-
-
 
 #include <QtGui>
 #include <QMainWindow>
@@ -11,14 +7,13 @@
 #include <QToolBar>
 
 #include "MDIArea.h"
+#include "FileNewController.h"
+#include "FileOpenController.h"
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
 	Q_OBJECT
 
 	private slots:
-		void newFile();
-		void open();
 		void save();
 		void saveAs();
 		void cut();
@@ -55,6 +50,8 @@ class MainWindow : public QMainWindow
 		QToolBar *fileToolBar;
 		QToolBar *editToolBar;
 		MdiArea *mdiMain;
+      FileNewController *fileNewController;
+      FileOpenController *fileOpenController;
 };
 
-#endif /* _MAINWINDOW.H_ */
+#endif /* _MAINWINDOW_H_ */

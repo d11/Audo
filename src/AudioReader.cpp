@@ -4,7 +4,7 @@
 #include <QDebug>
 
 
-Buffer *AudioReader::loadAudio(const char *filePath) {
+Buffer &AudioReader::loadAudio(const char *filePath) {
    SNDFILE *inputFile;
    SF_INFO inputFormat;
    inputFile = sf_open(filePath, SFM_READ, &inputFormat);
@@ -19,7 +19,7 @@ Buffer *AudioReader::loadAudio(const char *filePath) {
    if (channels != 1)
       qDebug() << "Warning - multiple channels not implemented";
 
-   ABuffer *buff = new ABuffer(frameCount, sampleRate, "Test Buffer 2");
+   StandardBuffer *buff = new StandardBuffer(frameCount, sampleRate, "Test Buffer 2");
 
    // read into temp array
    double *tempData = new double[frameCount*channels];
@@ -34,5 +34,5 @@ Buffer *AudioReader::loadAudio(const char *filePath) {
    delete[] tempData;
    if (sf_close(inputFile) != 0) qDebug() << "Error closing file";
 
-   return buff;
+   return *buff;
 }

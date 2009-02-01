@@ -1,0 +1,85 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+ABuffer	src/model/ABuffer.cpp	/^ABuffer::ABuffer(long frameCount, int sampleRate, QString name) : Buffer(sampleRate, name) {$/;"	f	class:ABuffer
+ABuffer	src/model/ABuffer.h	/^class ABuffer : public Buffer {$/;"	c
+AudioReader	src/AudioReader.h	/^class AudioReader {$/;"	c
+Buffer	src/model/Buffer.cpp	/^Buffer::Buffer(int sampleRate, QString name) {$/;"	f	class:Buffer
+Buffer	src/model/Buffer.h	/^class Buffer$/;"	c
+EditSubWindow	src/EditSubWindow.cpp	/^EditSubWindow::EditSubWindow(QWidget *parent) : QWidget(parent) {$/;"	f	class:EditSubWindow
+EditSubWindow	src/EditSubWindow.h	/^class EditSubWindow : public QWidget {$/;"	c
+MainWindow	src/MainWindow.cpp	/^MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)$/;"	f	class:MainWindow
+MainWindow	src/MainWindow.h	/^class MainWindow : public QMainWindow$/;"	c
+MdiArea	src/MDIArea.cpp	/^MdiArea::MdiArea(QWidget *parent) : QMdiArea(parent)$/;"	f	class:MdiArea
+MdiArea	src/MDIArea.h	/^class MdiArea : public QMdiArea$/;"	c
+WaveDisplay	src/view/WaveDisplay.cpp	/^WaveDisplay::WaveDisplay(QWidget *parent) : QFrame(parent) {$/;"	f	class:WaveDisplay
+WaveDisplay	src/view/WaveDisplay.h	/^class WaveDisplay : public QFrame {$/;"	c
+_ABUFFER_H_	src/model/ABuffer.h	2;"	d
+_AUDIOREADER_H_	src/AudioReader.h	2;"	d
+_AUMDIAREA_H_	src/MDIArea.h	2;"	d
+_BUFFER_H_	src/model/Buffer.h	2;"	d
+_EDITSUBWINDOW_H_	src/EditSubWindow.h	3;"	d
+_MAINWINDOW_H_	src/MainWindow.h	3;"	d
+_WAVEDISPLAY_H_	src/view/WaveDisplay.h	3;"	d
+buffer	src/view/WaveDisplay.h	/^      Buffer *buffer;$/;"	m	class:WaveDisplay
+copy	src/MainWindow.cpp	/^void MainWindow::copy() { std::cout << "'copy' not implemented" << std::endl; }$/;"	f	class:MainWindow
+copyData	src/model/ABuffer.cpp	/^void ABuffer::copyData(void *source, long startPos, long frameCount) $/;"	f	class:ABuffer
+createActions	src/MainWindow.cpp	/^void MainWindow::createActions() {$/;"	f	class:MainWindow
+createEditMenu	src/MainWindow.cpp	/^void MainWindow::createEditMenu() {$/;"	f	class:MainWindow
+createEditToolBar	src/MainWindow.cpp	/^void MainWindow::createEditToolBar() {$/;"	f	class:MainWindow
+createFileMenu	src/MainWindow.cpp	/^void MainWindow::createFileMenu() {$/;"	f	class:MainWindow
+createFileToolBar	src/MainWindow.cpp	/^void MainWindow::createFileToolBar() {$/;"	f	class:MainWindow
+createMenuBar	src/MainWindow.cpp	/^void MainWindow::createMenuBar() {$/;"	f	class:MainWindow
+crop	src/MainWindow.cpp	/^void MainWindow::crop() { std::cout << "'crop' not implemented" << std::endl; }$/;"	f	class:MainWindow
+cut	src/MainWindow.cpp	/^void MainWindow::cut() { std::cout << "'cut' not implemented" << std::endl; }$/;"	f	class:MainWindow
+data	src/model/ABuffer.h	/^      double *data;$/;"	m	class:ABuffer
+editCopyAct	src/MainWindow.h	/^		QAction *editCopyAct;$/;"	m	class:MainWindow
+editCropAct	src/MainWindow.h	/^		QAction *editCropAct;$/;"	m	class:MainWindow
+editCutAct	src/MainWindow.h	/^		QAction *editCutAct;$/;"	m	class:MainWindow
+editMenu	src/MainWindow.h	/^		QMenu *editMenu;$/;"	m	class:MainWindow
+editPasteAct	src/MainWindow.h	/^		QAction *editPasteAct;$/;"	m	class:MainWindow
+editSilenceAct	src/MainWindow.h	/^		QAction *editSilenceAct;$/;"	m	class:MainWindow
+editToolBar	src/MainWindow.h	/^		QToolBar *editToolBar;$/;"	m	class:MainWindow
+fileExitAct	src/MainWindow.h	/^		QAction *fileExitAct;$/;"	m	class:MainWindow
+fileMenu	src/MainWindow.h	/^		QMenu *fileMenu;$/;"	m	class:MainWindow
+fileNewAct	src/MainWindow.h	/^		QAction *fileNewAct;$/;"	m	class:MainWindow
+fileOpenAct	src/MainWindow.h	/^		QAction *fileOpenAct;$/;"	m	class:MainWindow
+fileSaveAct	src/MainWindow.h	/^		QAction *fileSaveAct;$/;"	m	class:MainWindow
+fileSaveAsAct	src/MainWindow.h	/^		QAction *fileSaveAsAct;$/;"	m	class:MainWindow
+fileToolBar	src/MainWindow.h	/^		QToolBar *fileToolBar;$/;"	m	class:MainWindow
+frames	src/model/ABuffer.h	/^		long frames;$/;"	m	class:ABuffer
+getBuffer	src/view/WaveDisplay.cpp	/^Buffer *WaveDisplay::getBuffer() {$/;"	f	class:WaveDisplay
+getDuration	src/model/Buffer.cpp	/^double Buffer::getDuration() {$/;"	f	class:Buffer
+getName	src/model/Buffer.cpp	/^const QString &Buffer::getName() { $/;"	f	class:Buffer
+getNumberOfSamples	src/model/ABuffer.cpp	/^inline long ABuffer::getNumberOfSamples() { return frames; }$/;"	f	class:ABuffer
+getOffset	src/view/WaveDisplay.cpp	/^long WaveDisplay::getOffset() {$/;"	f	class:WaveDisplay
+getSample	src/model/ABuffer.cpp	/^inline double ABuffer::getSample(long index) { return data[index]; }$/;"	f	class:ABuffer
+getScale	src/view/WaveDisplay.cpp	/^long WaveDisplay::getScale() {$/;"	f	class:WaveDisplay
+image	src/view/WaveDisplay.h	/^      QImage *image;$/;"	m	class:WaveDisplay
+loadAudio	src/AudioReader.cpp	/^Buffer *AudioReader::loadAudio(const char *filePath) {$/;"	f	class:AudioReader
+main	src/Audo.cpp	/^int main(int argc, char *argv[])$/;"	f
+mdiMain	src/MainWindow.h	/^		MdiArea *mdiMain;$/;"	m	class:MainWindow
+menuBar	src/MainWindow.h	/^		QMenuBar *menuBar;$/;"	m	class:MainWindow
+name	src/model/Buffer.h	/^		QString name;$/;"	m	class:Buffer
+newFile	src/MainWindow.cpp	/^void MainWindow::newFile() { $/;"	f	class:MainWindow
+offset	src/view/WaveDisplay.h	/^      long offset;$/;"	m	class:WaveDisplay
+open	src/MainWindow.cpp	/^void MainWindow::open() { std::cout << "'open' not implemented" << std::endl; }$/;"	f	class:MainWindow
+paintEvent	src/view/WaveDisplay.cpp	/^void WaveDisplay::paintEvent(QPaintEvent *event) {$/;"	f	class:WaveDisplay
+paste	src/MainWindow.cpp	/^void MainWindow::paste() { std::cout << "'paste' not implemented" << std::endl; }$/;"	f	class:MainWindow
+sampleRate	src/model/Buffer.h	/^		int sampleRate;$/;"	m	class:Buffer
+save	src/MainWindow.cpp	/^void MainWindow::save() { std::cout << "'save' not implemented" << std::endl; }$/;"	f	class:MainWindow
+saveAs	src/MainWindow.cpp	/^void MainWindow::saveAs() { std::cout << "'saveAs' not implemented" << std::endl; }$/;"	f	class:MainWindow
+scale	src/view/WaveDisplay.h	/^      long scale;$/;"	m	class:WaveDisplay
+setBuffer	src/view/WaveDisplay.cpp	/^void WaveDisplay::setBuffer(Buffer *buffer) {$/;"	f	class:WaveDisplay
+setOffset	src/view/WaveDisplay.cpp	/^void WaveDisplay::setOffset(long samples) {$/;"	f	class:WaveDisplay
+setScale	src/view/WaveDisplay.cpp	/^void WaveDisplay::setScale(long samples) {$/;"	f	class:WaveDisplay
+silence	src/MainWindow.cpp	/^void MainWindow::silence() { std::cout << "'silence' not implemented" << std::endl; }$/;"	f	class:MainWindow
+waveDisplay	src/EditSubWindow.h	/^      WaveDisplay *waveDisplay;$/;"	m	class:EditSubWindow
+~ABuffer	src/model/ABuffer.cpp	/^ABuffer::~ABuffer()$/;"	f	class:ABuffer
+~Buffer	src/model/Buffer.cpp	/^Buffer::~Buffer() { }$/;"	f	class:Buffer
+~EditSubWindow	src/EditSubWindow.cpp	/^EditSubWindow::~EditSubWindow() {$/;"	f	class:EditSubWindow
+~MainWindow	src/MainWindow.cpp	/^MainWindow::~MainWindow()$/;"	f	class:MainWindow
+~WaveDisplay	src/view/WaveDisplay.cpp	/^WaveDisplay::~WaveDisplay() {$/;"	f	class:WaveDisplay

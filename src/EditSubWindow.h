@@ -16,6 +16,8 @@ class EditSubWindow : public QWidget {
 	public:
 		EditSubWindow (QWidget *parent = 0);
 		~EditSubWindow();
+
+      void setBuffer(Buffer &buffer);
 };
 
-#endif /* _/MNT/FAT/PROJECTS/AUDO/SRC/EDITSUBWINDOW.H_ */
+#endif /* _EDITSUBWINDOW_H_ */

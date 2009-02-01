@@ -8,12 +8,13 @@ void MainWindow::createActions() {
 	fileNewAct = new QAction("&New", this);
 	fileNewAct->setShortcut(tr("Ctrl+N"));
 	fileNewAct->setStatusTip("Create a new file");
-	connect(fileNewAct, SIGNAL(triggered()), this, SLOT(newFile()));
+   fileNewController = new FileNewController(*fileNewAct, *mdiMain);
 
 	fileOpenAct = new QAction("&Open", this);
 	fileOpenAct->setShortcut(tr("Ctrl+O")); 
 	fileOpenAct->setStatusTip("Open an existing file");
-	connect(fileOpenAct, SIGNAL(triggered()), this, SLOT(open()));
+//   connect(fileOpenAct, SIGNAL(triggered()), this, SLOT(open()));
+   fileOpenController = new FileOpenController(*fileOpenAct, *mdiMain);
 
 	fileSaveAct = new QAction("&Save", this);
 	fileSaveAct->setShortcut(tr("Ctrl+S")); 
@@ -100,16 +101,7 @@ void MainWindow::createEditToolBar() {
 	addToolBar(editToolBar);
 }
 
-void MainWindow::newFile() {
-   std::cout << "Creating new window" << std::endl; 
-   EditSubWindow *newEditWindow = new EditSubWindow(mdiMain);
-   newEditWindow->show();
-   QMdiSubWindow *subWindow = mdiMain->addSubWindow(newEditWindow);
-   subWindow->setAttribute(Qt::WA_DeleteOnClose);
-   subWindow->show();
-}
-
-void MainWindow::open() { std::cout << "'open' not implemented" << std::endl; }
+//void MainWindow::open() { std::cout << "'open' not implemented" << std::endl; }
 void MainWindow::save() { std::cout << "'save' not implemented" << std::endl; }
 void MainWindow::saveAs() { std::cout << "'saveAs' not implemented" << std::endl; }
 
@@ -134,11 +126,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 	//Qt::Object.connect(fileToolBar, "actionTriggered(
 
-	/*
-	QVBoxLayout *layout = new QVBoxLayout;
-	layout->addWidget(hello);
-	setLayout(layout);
-	*/
 }
 
 MainWindow::~MainWindow()
@@ -159,4 +146,6 @@ MainWindow::~MainWindow()
 	delete fileToolBar;
 	delete editToolBar;
 	delete mdiMain;
+   delete fileNewController;
+   delete fileOpenController;
 }

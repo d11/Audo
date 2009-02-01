@@ -1,0 +1,16 @@
+name = Audo
+[qmake]
+controller = GENERIC_EXECUTION
+default = ""
+command = qmake
+cwd = /home/dan/Projects/Audo
+[make]
+controller = GENERIC_EXECUTION
+default = True
+command = make
+cwd = /home/dan/Projects/Audo
+[run]
+controller = GENERIC_EXECUTION
+default = ""
+command = ./Audo
+cwd = /home/dan/Projects/Audo

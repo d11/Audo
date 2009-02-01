@@ -4,25 +4,31 @@
 
 TEMPLATE = app
 TARGET =
-DEPENDPATH += . src src/model src/view
-INCLUDEPATH += . src src/model src/view
+DEPENDPATH += . src src/model src/view src/controller
+INCLUDEPATH += . src src/model src/view src/controller
 
 # Input
 HEADERS += src/AudioReader.h \
            src/EditSubWindow.h \
            src/MainWindow.h \
            src/MDIArea.h \
-           src/model/ABuffer.h \
+           src/model/StandardBuffer.h \
            src/model/Buffer.h \
-           src/view/WaveDisplay.h
+           src/view/WaveDisplay.h \
+           src/controller/ActionController.h \
+           src/controller/FileNewController.h \
+           src/controller/FileOpenController.h
 SOURCES += src/AudioReader.cpp \
            src/Audo.cpp \
            src/EditSubWindow.cpp \
            src/MainWindow.cpp \
            src/MDIArea.cpp \
-           src/model/ABuffer.cpp \
+           src/model/StandardBuffer.cpp \
            src/model/Buffer.cpp \
-           src/view/WaveDisplay.cpp
+           src/view/WaveDisplay.cpp \
+           src/controller/ActionController.cpp \
+           src/controller/FileNewController.cpp \
+           src/controller/FileOpenController.cpp
 
 CONFIG += qt debug warn on
 unix:LIBS += -lsndfile
