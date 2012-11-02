@@ -5,7 +5,7 @@ JackOutput::JackOutput() : StreamLogger(std::cerr) {
    start();
 }
 
-JackOutput::      ~JackOutput() {
+JackOutput::~JackOutput() {
    stop();
 }
 
@@ -22,7 +22,6 @@ void JackOutput::start()  {
    // TODO: check what '0' does  etc
    jack_set_process_callback(client, processCallback, 0);
    jack_on_shutdown(client, shutdownCallback, 0);
-
    sampleRate = jack_get_sample_rate(client);
    log("sample rate is " + sampleRate);
 
