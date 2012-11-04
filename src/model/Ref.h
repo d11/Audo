@@ -1,9 +1,16 @@
 #pragma once
 
 #include <stdexcept>
+#include <boost/shared_ptr.hpp>
 
 // Reference-counting Smart Pointer
 template <class T>
+struct Ref {
+   typedef boost::shared_ptr<T> type;
+};
+
+
+/*
 class Ref {
    private:
       T *mPtr;
@@ -11,6 +18,14 @@ class Ref {
 
    public:
       Ref<T>(T *ptr) : mPtr(ptr), mRefCount(1) { }
+
+      virtual ~Ref<T>()
+      {
+         if (!--mRefCount) 
+         {
+            delete mPtr;
+         }
+      }
 
       // Copy constructor
       Ref<T>(Ref<T> & other) : mPtr(other.mPtr), mRefCount(++other.mRefCount) { }
@@ -37,3 +52,4 @@ class Ref {
       T &operator *() const { return *mPtr; }
       T *operator ->() const { return mPtr; }
 };
+*/

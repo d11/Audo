@@ -6,12 +6,11 @@ Bugs
 * Sort out any memory leaks
 * Add license declaration
 * Add class documentation
-* Get unit tests working
-* Use Ref or remove it
 * Make jack + libsndfile optional dependencies
 * Handle different sample formats seamlessly
 * Use namespaces
 * Sort out global sample rate stuff
+* Factory for buffers
 
 Features
 * Implement HDF5 audio

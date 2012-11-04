@@ -1,8 +1,6 @@
 #pragma once
 
-#include "model/Buffer.h"
-
-class BufferRef;
+#include "model/BufferRef.h"
 
 class Output {
    public:

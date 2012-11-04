@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 
-#include "model/Ref.h"
+#include "model/BufferRef.h"
+#include "model/StandardBuffer.h"
 
 class RefTest : public CppUnit::TestCase {
    public:
@@ -10,10 +11,11 @@ class RefTest : public CppUnit::TestCase {
 
       void runTest()
       {
-         std::string *resource = new std::string("[Test Resource]");
+         BufferRef refA(new StandardBuffer(1, 1, "[Test Resource]"));
+         BufferRef refB(refA);
 
          // Test equality
-         CPPUNIT_ASSERT( Ref<std::string>(resource) == Ref<std::string>(resource) );
+         CPPUNIT_ASSERT( refA == refB );
       }
 };
 
