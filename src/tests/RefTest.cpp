@@ -1,5 +1,8 @@
-#include <cppunit>
+#include <cppunit/TestCase.h>
 #include <string>
+#include <iostream>
+
+#include "model/Ref.h"
 
 class RefTest : public CppUnit::TestCase {
    public:
@@ -7,9 +10,16 @@ class RefTest : public CppUnit::TestCase {
 
       void runTest()
       {
-         std::string resource("[Test Resource]");
+         std::string *resource = new std::string("[Test Resource]");
 
          // Test equality
-         CPPUNIT_ASSERT( Ref(resource) == Ref(resource) );
+         CPPUNIT_ASSERT( Ref<std::string>(resource) == Ref<std::string>(resource) );
       }
 };
+
+int main(int argc, char *argv[])
+{
+   RefTest refTest("Test smart pointer");
+   refTest.runTest();
+   std::cout << "Tests completed successfully" << std::endl;
+}

@@ -1,4 +1,3 @@
-
 #include "output/JackOutput.h"
 #include "model/BufferRef.h"
 #include "model/StandardBuffer.h"
@@ -20,7 +19,7 @@ BufferRef JackOutput::getNextOutputBuffer(jack_nframes_t frames)
 }
 
 void JackOutput::start()  {
-   log("starting");
+   log("Initialising Jack output");
 
    jack_status_t status;
    jack_options_t options = JackNullOption;
@@ -29,9 +28,8 @@ void JackOutput::start()  {
       log("Couldn't connect to jack!");
       failure();
    }
-   // TODO: check what '0' does  etc
    jack_set_process_callback(client, processCallback, this);
-   //jack_on_shutdown(client, shutdownCallback, 0); TODO make work
+   jack_on_shutdown(client, shutdownCallback, this);
    sampleRate = jack_get_sample_rate(client);
    std::stringstream s;
    s << "sample rate is " << sampleRate;
@@ -54,34 +52,40 @@ void JackOutput::start()  {
    }
 
    // connected to jack, ready for output
-
-
 }
 
 void JackOutput::fillBuffer(BufferRef buffer)
 {
-   long n = buffer->getNumberOfSamples();
+   long sampleCount = buffer->getNumberOfSamples();
 
-   // TODO
+   // TODO fill buffer with samples
+}
+
+void JackOutput::serverShutdown()
+{
+   log("Jack server was shut down.");
 }
 
 void JackOutput::stop() {
-   log("stopping");
+   log("Detaching client from Jack server");
    jack_client_close(client);
 }
+
 void JackOutput::shutdownCallback(void *arg) {
-   //log("Server shut down or disconnected!");
-   //failure();
+   JackOutput *output = static_cast<JackOutput*>(arg);
+   output->serverShutdown();
 }
-int JackOutput::processCallback(jack_nframes_t frames, void *arg) {
-   //log("processCallback");
+
+int JackOutput::processCallback(jack_nframes_t frames, void *arg)
+{
    JackOutput *output = static_cast<JackOutput*>(arg);
    BufferRef buffer = output->getNextOutputBuffer(frames);
    output->fillBuffer(buffer);
    return 0;
 }
+
 void JackOutput::failure() {
-   log("Jack Output error!");
+   log("Jack output error!");
    //throw new Exception(); TODO FIXME
 }
 

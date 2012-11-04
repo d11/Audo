@@ -9,3 +9,4 @@ Makefile
 .fuse_*
 Audo
 cmake_install.cmake
+AudoTests

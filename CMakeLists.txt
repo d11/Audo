@@ -13,42 +13,48 @@ project(Audo)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 set(Audo_SOURCES 
-   src/controller/ActionController.cpp
-   src/controller/FileNewController.cpp
-   src/controller/FileOpenController.cpp
-   src/gui/Audo.cpp
-   src/gui/EditSubWindow.cpp
-   src/gui/MainWindow.cpp
-   src/gui/MDIArea.cpp
-   src/input/AudioReader.cpp
-   src/model/Buffer.cpp
-   src/model/BufferPool.cpp
-   src/model/StandardBuffer.cpp
-   src/output/JackOutput.cpp
-   #src/tests/RefTest.cpp TODO tests
-   src/view/WaveDisplay.cpp
+   ./src/controller/ActionController.cpp
+   ./src/controller/FileNewController.cpp
+   ./src/controller/FileOpenController.cpp
+   ./src/gui/Audo.cpp
+   ./src/gui/EditSubWindow.cpp
+   ./src/gui/MainWindow.cpp
+   ./src/gui/MDIArea.cpp
+   ./src/input/AudioReader.cpp
+   ./src/model/Buffer.cpp
+   ./src/model/AudoTypeBase.cpp
+   ./src/model/BufferPool.cpp
+   ./src/model/EmptyBuffer.cpp
+   ./src/model/SampleSource.cpp
+   ./src/model/StandardBuffer.cpp
+   ./src/output/JackOutput.cpp
+   ./src/view/WaveDisplay.cpp
 )
 
 set(Audo_HEADERS 
-   src/controller/ActionController.h
-   src/controller/FileNewController.h
-   src/controller/FileOpenController.h
-   src/gui/EditSubWindow.h
-   src/gui/MainWindow.h
-   src/gui/MDIArea.h
-   src/input/AudioReader.h
-   src/model/Buffer.h
-   src/model/BufferPool.h
-   src/model/BufferRef.h
-   src/model/Ref.h
-   src/model/StandardBuffer.h
-   src/output/JackOutput.h
-   src/output/Output.h
-   src/util/AudoTypes.h
-   src/util/log/Logger.h
-   src/util/log/StreamLogger.h
-   src/util/singleton.h
-   src/view/WaveDisplay.h
+   ./src/controller/ActionController.h
+   ./src/controller/FileNewController.h
+   ./src/controller/FileOpenController.h
+   ./src/gui/EditSubWindow.h
+   ./src/gui/MainWindow.h
+   ./src/gui/MDIArea.h
+   ./src/input/AudioReader.h
+   ./src/model/AudoType.h
+   ./src/model/AudoTypeBase.h
+   ./src/model/Buffer.h
+   ./src/model/BufferPool.h
+   ./src/model/BufferRef.h
+   ./src/model/EmptyBuffer.h
+   ./src/model/Ref.h
+   ./src/model/SampleSource.h
+   ./src/model/StandardBuffer.h
+   ./src/output/JackOutput.h
+   ./src/output/Output.h
+   ./src/util/AudoTypes.h
+   ./src/util/log/Logger.h
+   ./src/util/log/StreamLogger.h
+   ./src/util/singleton.h
+   ./src/view/WaveDisplay.h
 )
 
 # Qt4
@@ -63,9 +69,32 @@ include_directories(${LIBSNDFILE_INCLUDE_DIRS} ${JACK_INCLUDE_DIRS})
 
 # Jack
 find_package(Jack REQUIRED)
-set(LIBS ${LIBS} ${LIBSNDFILE_LIBRARY} ${JACK_LIBRARIES})
+set(LIBS ${LIBS} ${LIBSNDFILE_LIBRARY} ${JACK_LIBRARIES} ${QT_LIBRARIES})
 
+# Main Executable
 
 add_executable(Audo ${Audo_SOURCES} ${Audo_HEADERS_MOC})
-target_link_libraries(Audo ${LIBS} ${QT_LIBRARIES} )
+target_link_libraries(Audo ${LIBS})
 
+#==============================
+# Unit Tests
+#==============================
+
+# CppUnit
+
+find_package(CppUnit REQUIRED)
+set(AudoTests_LIBS ${AudoTest_LIBS} ${CPPUNIT_LIBRARY})
+
+# Unit test executable
+
+set(AudoTests_SOURCES
+   ./src/tests/RefTest.cpp
+)
+
+set(AudoTests_HEADERS ${CPPUNIT_INCLUDE_DIR})
+
+include_directories(${AudoTests_HEADERS})
+
+message("TEST INC: ${AudoTests_HEADERS}" )
+add_executable(AudoTests ${AudoTests_SOURCES} ${AudoTests_HEADERS})
+target_link_libraries(AudoTests ${AudoTests_LIBS})

@@ -22,9 +22,13 @@ class JackOutput : public StreamLogger, Output {
       JackOutput();
       ~JackOutput();
 
+
+
    private:
       void start();
       void stop();
+      void serverShutdown();
+
       static void shutdownCallback(void *arg);
 
       // Precondition:
@@ -38,6 +42,7 @@ class JackOutput : public StreamLogger, Output {
       static int processCallback(jack_nframes_t frames, void *arg);
 
       BufferRef getNextOutputBuffer(jack_nframes_t frames);
+
       void fillBuffer(BufferRef buffer);
 
       void failure();

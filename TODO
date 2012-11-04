@@ -9,6 +9,9 @@ Bugs
 * Get unit tests working
 * Use Ref or remove it
 * Make jack + libsndfile optional dependencies
+* Handle different sample formats seamlessly
+* Use namespaces
+* Sort out global sample rate stuff
 
 Features
 * Implement HDF5 audio
