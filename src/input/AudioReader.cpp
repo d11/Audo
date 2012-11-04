@@ -1,14 +1,17 @@
 #include "AudioReader.h"
 #include "model/BufferRef.h"
-#include <sndfile.hh>
+#include <sndfile.h>
 
 #include <QDebug>
+#include <QString>
 
+BufferRef AudioReader::loadAudio(const QString & filePath) {
 
-BufferRef AudioReader::loadAudio(const char *filePath) {
+   QByteArray filePathByteArray = filePath.toLocal8Bit();
+
    SNDFILE *inputFile;
    SF_INFO inputFormat;
-   inputFile = sf_open(filePath, SFM_READ, &inputFormat);
+   inputFile = sf_open(filePathByteArray.data(), SFM_READ, &inputFormat);
    if (NULL == inputFile) return BufferRef(new StandardBuffer(1,1,"Invalid buffer")); // TODO
    qDebug() << "Opened sound file";
 

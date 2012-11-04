@@ -1,5 +1,4 @@
-#ifndef _ACTIONCONTROLLER_H_
-#define _ACTIONCONTROLLER_H_
+#pragma once
 
 #include <QAction>
 #include <QObject>
@@ -17,5 +16,3 @@ class ActionController : public QObject {
       ActionController(QAction &action);
       virtual ~ActionController();
 };
-
-#endif /* _ACTIONCONTROLLER_H_ */

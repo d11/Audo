@@ -1,5 +1,6 @@
 #include "BufferPool.h"
 #include "util/AudoTypes.h"
+#include "input/AudioReader.h"
 
 BufferPool::BufferPool()
    : blockSize(1024) {
@@ -15,14 +16,16 @@ std::list<BufferRef> BufferPool::getBuffers() {
 BufferRef BufferPool::getNewBuffer(frames_t size) {
    sample_t sampleRate = 44100; // TODO
    StandardBuffer *buffer = new StandardBuffer(size, sampleRate, "");
+   return BufferRef(buffer);
 }
 
 BufferRef BufferPool::getEmptyBuffer() {
-   return getNewBuffer(0);
+   return getNewBuffer(1);
 }
 
 BufferRef BufferPool::getNewBufferFromFile(QString fileName) {
-
+   AudioReader reader;
+   return reader.loadAudio(fileName);
 }
 
 void BufferPool::getMoreSpace(frames_t minRequired) {

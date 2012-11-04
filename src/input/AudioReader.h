@@ -6,5 +6,5 @@
 
 class AudioReader {
    public:
-   static BufferRef loadAudio(const char *filePath);
+   static BufferRef loadAudio(const QString & filePath);
 };

@@ -1,0 +1,15 @@
+TODO
+* Replace header guards with pragma once
+* Use foredecs where possible; remove unnecessary headers
+
+* Write dependency graph class
+* Write node class + API
+* Write timeline
+* Write history manager
+* Write edit commands
+* Write plugin architecture
+* Python bindings for commands
+
+* Get jack output working
+* Integrate libpd
+* Make jack + libsndfile optional dependencies

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "model/BufferRef.h"
 #include "model/StandardBuffer.h"
 #include <list>

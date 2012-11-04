@@ -5,3 +5,7 @@ build
 CMakeFiles
 CMakeCache.txt
 Makefile
+*moc_*.cxx
+.fuse_*
+Audo
+cmake_install.cmake

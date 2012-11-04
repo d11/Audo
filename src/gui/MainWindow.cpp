@@ -15,7 +15,7 @@ void MainWindow::createActions() {
 	fileOpenAct->setShortcut(tr("Ctrl+O")); 
 	fileOpenAct->setStatusTip("Open an existing file");
 //   connect(fileOpenAct, SIGNAL(triggered()), this, SLOT(open()));
-   fileOpenController = new FileOpenController(*fileOpenAct, *mdiMain);
+   fileOpenController = new FileOpenController(*fileOpenAct, *mdiMain, bufferPool);
 
 	fileSaveAct = new QAction("&Save", this);
 	fileSaveAct->setShortcut(tr("Ctrl+S")); 

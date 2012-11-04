@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 2.8)
 
+# Extra CMake modules are here
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-PROJECT(helloworld)
-FIND_PACKAGE(Qt4 REQUIRED)
-SET(helloworld_SOURCES 
+
+# Debug build by default
+set(CMAKE_BUILD_TYPE Debug)
+
+
+project(Audo)
+
+include_directories(${CMAKE_SOURCE_DIR}/src)
+
+set(Audo_SOURCES 
    src/controller/ActionController.cpp
    src/controller/FileNewController.cpp
    src/controller/FileOpenController.cpp
@@ -18,8 +26,9 @@ SET(helloworld_SOURCES
    src/output/JackOutput.cpp
    #src/tests/RefTest.cpp TODO tests
    src/view/WaveDisplay.cpp
-   )
-SET(helloworld_HEADERS 
+)
+
+set(Audo_HEADERS 
    src/controller/ActionController.h
    src/controller/FileNewController.h
    src/controller/FileOpenController.h
@@ -39,20 +48,23 @@ SET(helloworld_HEADERS
    src/util/log/StreamLogger.h
    src/util/singleton.h
    src/view/WaveDisplay.h
-   )
+)
 
-
-
-find_package(LibSndFile REQUIRED)
-find_package(Jack REQUIRED)
-include_directories(${LIBSNDFILE_INCLUDE_DIRS} ${JACK_INCLUDE_DIRS})
-set(LIBS ${LIBS} ${LIBSNDFILE_LIBRARY} ${JACK_LIBRARIES})
-message("LIBS = ${LIBS}")
-
-include_directories(${CMAKE_SOURCE_DIR}/src)
-QT4_WRAP_CPP(helloworld_HEADERS_MOC ${helloworld_HEADERS})
+# Qt4
+find_package(Qt4 REQUIRED)
+QT4_WRAP_CPP(Audo_HEADERS_MOC ${Audo_HEADERS})
 include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
-add_executable(helloworld ${helloworld_SOURCES} 
-   ${helloworld_HEADERS_MOC})
-target_link_libraries(helloworld ${QT_LIBRARIES} ${LIBS})
+
+# LibSndFile
+find_package(LibSndFile REQUIRED)
+include_directories(${LIBSNDFILE_INCLUDE_DIRS} ${JACK_INCLUDE_DIRS})
+
+# Jack
+find_package(Jack REQUIRED)
+set(LIBS ${LIBS} ${LIBSNDFILE_LIBRARY} ${JACK_LIBRARIES})
+
+
+add_executable(Audo ${Audo_SOURCES} ${Audo_HEADERS_MOC})
+target_link_libraries(Audo ${LIBS} ${QT_LIBRARIES} )
+
