@@ -15,7 +15,7 @@ class JackOutput : public StreamLogger, Output {
    private:
       jack_port_t *outputPort;
       jack_client_t *client;
-      const char *ports[];
+      const char **ports;
       jack_nframes_t sampleRate;
 
    public:

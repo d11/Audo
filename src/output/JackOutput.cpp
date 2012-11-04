@@ -2,6 +2,7 @@
 #include "output/JackOutput.h"
 #include "model/BufferRef.h"
 #include "model/StandardBuffer.h"
+#include <sstream>
 
 JackOutput::JackOutput() : StreamLogger(std::cerr) {
    start();
@@ -32,7 +33,9 @@ void JackOutput::start()  {
    jack_set_process_callback(client, processCallback, this);
    //jack_on_shutdown(client, shutdownCallback, 0); TODO make work
    sampleRate = jack_get_sample_rate(client);
-   log("sample rate is " + sampleRate);
+   std::stringstream s;
+   s << "sample rate is " << sampleRate;
+   log(s.str());
 
    outputPort = jack_port_register(client, "output", JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput, 0);
 
@@ -41,12 +44,10 @@ void JackOutput::start()  {
       failure();
    }
 
-   /* TODO FIXME
    if ((ports = jack_get_ports(client, NULL, NULL, JackPortIsPhysical | JackPortIsInput)) == NULL) {
       log("There were no physical ports accepting input!");
       failure();
    }
-   */
    if (jack_connect (client, jack_port_name(outputPort), ports[0])) {
       log("Couldn't connect to the desired output port!?");
       failure();
