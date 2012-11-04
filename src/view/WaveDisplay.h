@@ -1,7 +1,7 @@
-#ifndef _WAVEDISPLAY_H_
+#pragma once
 
-#define _WAVEDISPLAY_H_
-#include "Buffer.h"
+#include "model/Buffer.h"
+#include "model/BufferRef.h"
 
 #include <QRect>
 #include <QFrame>
@@ -11,7 +11,7 @@ class WaveDisplay : public QFrame {
 
    protected:
       QImage *image;
-      Buffer *buffer;
+      BufferRef buffer;
       long offset;
       long scale;
 
@@ -21,10 +21,10 @@ class WaveDisplay : public QFrame {
       ~WaveDisplay();
 
       // Set the audio buffer that the widget should display
-      void setBuffer(Buffer *buffer);
+      void setBuffer(BufferRef buffer);
 
       // Get the buffer currently being displayed
-      Buffer *getBuffer();
+      BufferRef getBuffer();
 
       // The offset value controls which part of the buffer is displayed  
 
@@ -44,4 +44,3 @@ class WaveDisplay : public QFrame {
 //      void updateImage(const QRect &region);
 		
 };
-#endif /* _WAVEDISPLAY.H_ */

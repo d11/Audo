@@ -2,3 +2,6 @@
 tags
 build
 .*.swp
+CMakeFiles
+CMakeCache.txt
+Makefile

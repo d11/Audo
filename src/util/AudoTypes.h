@@ -1,9 +1,7 @@
-#ifdef AUDOTYPES_H
-#define AUDOTYPES_H
+#pragma once
 
 #include <stdint.h>
 
-typedef sample_t double;
-typedef frames_t uint32_t;
+typedef double sample_t;
+typedef uint32_t frames_t;
 
-#endif

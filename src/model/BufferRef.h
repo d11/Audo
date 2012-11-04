@@ -1,8 +1,14 @@
+#pragma once
+
+#include "model/Buffer.h"
+
 class BufferRef {
    private:
       Buffer *ptr;
+      BufferRef() { };
    public:
-      BufferRef() { }
+      BufferRef(Buffer *buffer) : ptr(buffer) { }
       ~BufferRef() { }
-      (operator*)
+      Buffer &operator *() const { return *ptr; }
+      Buffer *operator ->() const { return ptr; }
 };

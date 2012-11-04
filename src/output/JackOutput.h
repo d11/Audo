@@ -2,6 +2,9 @@
 #include <iostream>
 
 #include <jack/jack.h>
+#include "util/log/StreamLogger.h"
+#include "output/Output.h"
+#include "model/Buffer.h"
 
 #include <exception>
 
@@ -31,7 +34,7 @@ class JackOutput : public StreamLogger, Output {
       //    zero on success, non-zero on error
       int processCallback(jack_nframes_t frames, void *arg);
 
-      void failure()
+      void failure();
 };
 
 //int main(int argc, char *argv[]) {

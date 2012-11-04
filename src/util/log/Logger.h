@@ -1,6 +1,6 @@
 class Logger {
    public:
-      Logger();
-      virtual ~Logger();
+      Logger() {};
+      virtual ~Logger() {};
       virtual void log() = 0;
 };

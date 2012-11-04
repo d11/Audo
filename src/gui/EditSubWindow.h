@@ -1,10 +1,9 @@
-#ifndef _EDITSUBWINDOW_H_
-
-#define _EDITSUBWINDOW_H_
+#pragma once
 
 #include <QtGui>
-#include "WaveDisplay.h"
-#include "AudioReader.h"
+#include "view/WaveDisplay.h"
+#include "input/AudioReader.h"
+#include "model/BufferRef.h"
 
 class EditSubWindow : public QWidget {
 
@@ -17,7 +16,5 @@ class EditSubWindow : public QWidget {
 		EditSubWindow (QWidget *parent = 0);
 		~EditSubWindow();
 
-      void setBuffer(Buffer &buffer);
+      void setBuffer(BufferRef buffer);
 };
-
-#endif /* _EDITSUBWINDOW_H_ */

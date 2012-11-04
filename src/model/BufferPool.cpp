@@ -1,18 +1,20 @@
 #include "BufferPool.h"
+#include "util/AudoTypes.h"
 
 BufferPool::BufferPool()
-   : buffers() {
+   : blockSize(1024) {
 
 }
 
 BufferPool::~BufferPool() { }
 
-std::list<BufferRef> &BufferPool::getBuffers() {
-   return buffers;
+std::list<BufferRef> BufferPool::getBuffers() {
+   return usedBuffers;
 }
 
-BufferRef BufferPool::getNewBuffer(long size) {
-   StandardBuffer *buffer = new StandardBuffer(size,)
+BufferRef BufferPool::getNewBuffer(frames_t size) {
+   sample_t sampleRate = 44100; // TODO
+   StandardBuffer *buffer = new StandardBuffer(size, sampleRate, "");
 }
 
 BufferRef BufferPool::getEmptyBuffer() {
@@ -26,12 +28,15 @@ BufferRef BufferPool::getNewBufferFromFile(QString fileName) {
 void BufferPool::getMoreSpace(frames_t minRequired) {
    int buffersNeeded = minRequired / blockSize + 1;
    for (int i = 0; i < buffersNeeded; ++i)
+   {
       addBuffer();
+   }
 }
 
 
 void BufferPool::addBuffer() {
-   StandardBuffer &newBuffer = new StandardBuffer(blockSize, sampleRate);
-   freeBuffers.add(newBuffer);
-
+   sample_t sampleRate = 44100; // TODO
+   StandardBuffer *newBuffer = new StandardBuffer(blockSize, sampleRate, "");
+   freeBuffers.push_front(*newBuffer); // TODO don't copy! use a BufferRef ?
+ 
 }

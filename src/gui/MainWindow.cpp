@@ -8,7 +8,8 @@ void MainWindow::createActions() {
 	fileNewAct = new QAction("&New", this);
 	fileNewAct->setShortcut(tr("Ctrl+N"));
 	fileNewAct->setStatusTip("Create a new file");
-   fileNewController = new FileNewController(*fileNewAct, *mdiMain);
+   BufferPool bufferPool; // TODO
+   fileNewController = new FileNewController(*fileNewAct, *mdiMain, bufferPool);
 
 	fileOpenAct = new QAction("&Open", this);
 	fileOpenAct->setShortcut(tr("Ctrl+O")); 

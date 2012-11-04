@@ -1,14 +1,15 @@
 #include "AudioReader.h"
+#include "model/BufferRef.h"
 #include <sndfile.hh>
 
 #include <QDebug>
 
 
-Buffer &AudioReader::loadAudio(const char *filePath) {
+BufferRef AudioReader::loadAudio(const char *filePath) {
    SNDFILE *inputFile;
    SF_INFO inputFormat;
    inputFile = sf_open(filePath, SFM_READ, &inputFormat);
-   if (NULL == inputFile) return NULL;
+   if (NULL == inputFile) return BufferRef(new StandardBuffer(1,1,"Invalid buffer")); // TODO
    qDebug() << "Opened sound file";
 
    int sampleRate = inputFormat.samplerate;
@@ -34,5 +35,5 @@ Buffer &AudioReader::loadAudio(const char *filePath) {
    delete[] tempData;
    if (sf_close(inputFile) != 0) qDebug() << "Error closing file";
 
-   return *buff;
+   return BufferRef(buff);
 }

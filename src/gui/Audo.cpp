@@ -1,7 +1,7 @@
 #include <QApplication>
 #include "MainWindow.h"
 
-#include "ABuffer.h"
+//#include "ABuffer.h"
 
 int main(int argc, char *argv[])
 {

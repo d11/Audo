@@ -1,12 +1,13 @@
-#include "StandardBuffer.h"
+#include "model/BufferRef.h"
+#include "model/StandardBuffer.h"
 #include <list>
-#include "AudoTypes.h"
+#include "util/AudoTypes.h"
 
 class BufferPool {
    private:
       std::list<StandardBuffer> freeBuffers;
       std::list<BufferRef> usedBuffers;
-      const frames_t blockSize = 1024;
+      const frames_t blockSize;
 
    public:
       // Ctor
@@ -18,6 +19,8 @@ class BufferPool {
       // Provide a silent buffer of the specified size
       BufferRef getNewBuffer(frames_t size);
 
+      BufferRef getNewBufferFromFile(QString fileName);
+
       // Provide a buffer of zero length
       BufferRef getEmptyBuffer();
 
@@ -27,4 +30,7 @@ class BufferPool {
    private:
       // Allocate more space (at least minRequired extra frames)
       void getMoreSpace(frames_t minRequired);
+      
+      
+      void addBuffer();
 };

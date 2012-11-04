@@ -3,8 +3,9 @@
 #include <QPushButton>
 #include <QScrollArea>
 
-#include "AudioReader.h"
-#include "Buffer.h"
+#include "input/AudioReader.h"
+#include "model/Buffer.h"
+#include "model/BufferRef.h"
 
 EditSubWindow::EditSubWindow(QWidget *parent) : QWidget(parent) {
    waveDisplay = new WaveDisplay(this);
@@ -33,6 +34,6 @@ EditSubWindow::~EditSubWindow() {
    delete waveDisplay;
 }
 
-EditSubWindow::setBuffer(Buffer &buffer) {
+void EditSubWindow::setBuffer(BufferRef buffer) {
    waveDisplay->setBuffer(buffer);
 }

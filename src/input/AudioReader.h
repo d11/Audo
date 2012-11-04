@@ -1,11 +1,10 @@
-#ifndef _AUDIOREADER_H_
-#define _AUDIOREADER_H_
+#pragma once
 
 #include <sndfile.h>
-#include "StandardBuffer.h"
+#include "model/StandardBuffer.h"
+#include "model/BufferRef.h"
 
 class AudioReader {
    public:
-   static Buffer &loadAudio(const char *filePath);
+   static BufferRef loadAudio(const char *filePath);
 };
-#endif /* _SRC/AUDIOREADER.H_ */

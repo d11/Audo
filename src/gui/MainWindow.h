@@ -7,8 +7,8 @@
 #include <QToolBar>
 
 #include "MDIArea.h"
-#include "FileNewController.h"
-#include "FileOpenController.h"
+#include "controller/FileNewController.h"
+#include "controller/FileOpenController.h"
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT

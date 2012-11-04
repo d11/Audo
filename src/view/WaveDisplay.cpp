@@ -1,4 +1,5 @@
 #include "WaveDisplay.h"
+#include "model/StandardBuffer.h"
 #include <QPaintEvent>
 #include <QPainter>
 #include <QFrame>
@@ -6,7 +7,10 @@
 
 #include <QDebug>
 
-WaveDisplay::WaveDisplay(QWidget *parent) : QFrame(parent) {
+WaveDisplay::WaveDisplay(QWidget *parent)
+   : QFrame(parent),
+     buffer(new StandardBuffer(1,1,"Invalid buffer")) // TODO
+{
    setBuffer(NULL);
    setOffset(0);
    setScale(400); // Arbitrary; temp
@@ -19,17 +23,17 @@ WaveDisplay::WaveDisplay(QWidget *parent) : QFrame(parent) {
 
 WaveDisplay::~WaveDisplay() { }
 
-void WaveDisplay::setBuffer(Buffer *buffer) {
+void WaveDisplay::setBuffer(BufferRef buffer) {
    this->buffer = buffer;
-   if (NULL != buffer)
+   //if (NULL != buffer) TODO FIXME
       resize(buffer->getNumberOfSamples()/scale, 100);
-   else
-      resize(300, 100);
+   //else
+   //   resize(300, 100);
 
    update();
 }
 
-Buffer *WaveDisplay::getBuffer() {
+BufferRef WaveDisplay::getBuffer() {
    return buffer;
 }
 
@@ -53,15 +57,15 @@ void WaveDisplay::paintEvent(QPaintEvent *event) {
    QPainter painter(this);
    QRect toUpdate = event->rect();
 
-   if (buffer == NULL) {
-      painter.setPen(Qt::lightGray);
-      painter.drawRect(toUpdate);
-      painter.setPen(Qt::black);
-      painter.drawText(5,5,"No buffer!");
-      painter.drawLine(0, 0, width(), height());
-      painter.drawLine(0, height(), width(), 0);
-      qDebug() << toUpdate;
-   } else {
+   //if (buffer == NULL) {
+   //   painter.setPen(Qt::lightGray);
+   //   painter.drawRect(toUpdate);
+   //   painter.setPen(Qt::black);
+   //   painter.drawText(5,5,"No buffer!");
+   //   painter.drawLine(0, 0, width(), height());
+   //   painter.drawLine(0, height(), width(), 0);
+   //   qDebug() << toUpdate;
+   //} else {
       // Update every column of pixels in the region
       for (int pixelH = toUpdate.left(); pixelH <= toUpdate.right(); ++pixelH) {
 
@@ -92,6 +96,6 @@ void WaveDisplay::paintEvent(QPaintEvent *event) {
          }
       }
 
-   }
+   //}
 }
 

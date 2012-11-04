@@ -6,7 +6,7 @@
 
 class StandardBuffer : public Buffer {
 	public:
-		StandardBuffer(long frameCount, int sampleRate);
+		StandardBuffer(long frameCount, int sampleRate, QString name);
 		~StandardBuffer();
       long getNumberOfSamples();
       double getSample(long index);

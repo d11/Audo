@@ -1,14 +1,14 @@
-#include <util/log/logger.h>
+#include "util/log/Logger.h"
 
 class StreamLogger : public Logger{
    private:
-      const std::ostream &logStream;
+      std::ostream &logStream;
    public:
 
-   StreamLogger(const std::ostream &s) : Logger(), logStream(s) { }
-   ~StreamLogger();
+   StreamLogger(std::ostream &s) : Logger(), logStream(s) { };
+   virtual ~StreamLogger() {};
 
    void log(const std::string &msg) {
-      (*logStream) << msg << std::endl;
+      logStream << msg << std::endl;
    }
 };

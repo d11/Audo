@@ -2,7 +2,7 @@
 #define _FILENEWCONTROLLER_H_
 
 #include "ActionController.h"
-#include "BufferPool.h"
+#include "model/BufferPool.h"
 #include <QtGui>
 #include <QMdiArea>
 
