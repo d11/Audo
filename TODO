@@ -1,6 +1,7 @@
 TODO
 * Replace header guards with pragma once
 * Use foredecs where possible; remove unnecessary headers
+* Sort out any memory leaks
 
 * Write dependency graph class
 * Write node class + API
