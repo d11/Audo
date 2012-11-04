@@ -13,6 +13,7 @@
 class JackOutput : public StreamLogger, Output {
 
    private:
+      jack_port_t *outputPort;
       jack_client_t *client;
       const char *ports[];
       jack_nframes_t sampleRate;
@@ -24,7 +25,7 @@ class JackOutput : public StreamLogger, Output {
    private:
       void start();
       void stop();
-      void shutdownCallback(void *arg);
+      static void shutdownCallback(void *arg);
 
       // Precondition:
       //    nframes == jack_get_buffer_size()
@@ -34,7 +35,10 @@ class JackOutput : public StreamLogger, Output {
       //       arg 	pointer to a client supplied data
       // Returns:
       //    zero on success, non-zero on error
-      int processCallback(jack_nframes_t frames, void *arg);
+      static int processCallback(jack_nframes_t frames, void *arg);
+
+      BufferRef getNextOutputBuffer(jack_nframes_t frames);
+      void fillBuffer(BufferRef buffer);
 
       void failure();
 };

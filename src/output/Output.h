@@ -2,11 +2,13 @@
 
 #include "model/Buffer.h"
 
+class BufferRef;
+
 class Output {
    public:
       Output() {};
       virtual ~Output() {};
-      virtual void fillBuffer(const Buffer& buff) = 0;
+      virtual void fillBuffer(BufferRef buffer) = 0;
 
    private:
 };

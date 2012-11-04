@@ -26,9 +26,9 @@ BufferRef AudioReader::loadAudio(const QString & filePath) {
    StandardBuffer *buff = new StandardBuffer(frameCount, sampleRate, "Test Buffer 2");
 
    // read into temp array
-   double *tempData = new double[frameCount*channels];
+   float *tempData = new float[frameCount*channels];
 
-   int read = sf_readf_double(inputFile, tempData, frameCount);
+   int read = sf_readf_float(inputFile, tempData, frameCount);
 
    qDebug() << "read " << read << " frames into temp memory";
 

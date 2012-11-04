@@ -6,6 +6,7 @@
 class StandardBuffer : public Buffer {
 	public:
 		StandardBuffer(long frameCount, int sampleRate, QString name);
+      StandardBuffer(long frameCount, int sampleRate, QString name, float *data);
 		~StandardBuffer();
       long getNumberOfSamples();
       double getSample(long index);
@@ -13,5 +14,5 @@ class StandardBuffer : public Buffer {
 
 	protected:
 		long frames;
-      double *data;
+      float *data;
 };

@@ -3,10 +3,20 @@
 #include <QDebug>
 
 // Constructor
-StandardBuffer::StandardBuffer(long frameCount, int sampleRate, QString name) : Buffer(sampleRate, name) {
+StandardBuffer::StandardBuffer(long frameCount, int sampleRate, QString name)
+ : Buffer(sampleRate, name),
+   frames(frameCount)
+{
    qDebug() << "Initializing concrete buffer with name '" << name << "'";
-   frames = frameCount;
-	data = new double[frameCount];
+	data = new float[frameCount];
+}
+
+StandardBuffer::StandardBuffer(long frameCount, int sampleRate, QString name, float *data) 
+ : Buffer(sampleRate, name),
+   frames(frameCount),
+   data(data)
+{
+   qDebug() << "Initializing concrete buffer from existing data, with name '" << name << "'";
 }
 
 // Destructor
@@ -25,7 +35,7 @@ void StandardBuffer::copyData(void *source, long startPos, long frameCount)
    qDebug() << "Copying data into buffer...";
 	try {
 		if (startPos + frameCount > frames) throw;
-		memcpy(data + startPos*sizeof(double), source, sizeof(double)*frameCount);
+		memcpy(data + startPos*sizeof(float), source, sizeof(float)*frameCount);
 	}
 	catch (...) {
       qDebug() << "Error: attempted to copy too many frames into a buffer!";

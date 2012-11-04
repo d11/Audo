@@ -1,8 +1,10 @@
 #pragma once
 
+#include <string>
+
 class Logger {
    public:
       Logger() {};
       virtual ~Logger() {};
-      virtual void log() = 0;
+      virtual void log(const std::string & message) = 0;
 };

@@ -1,6 +1,8 @@
 #include <QApplication>
 #include "MainWindow.h"
 
+#include "output/JackOutput.h"
+
 //#include "ABuffer.h"
 
 int main(int argc, char *argv[])
@@ -13,6 +15,8 @@ int main(int argc, char *argv[])
 	MainWindow mainwin;
 
 	mainwin.show();
+
+   JackOutput jackOutput;
 
 	return app.exec();
 }
