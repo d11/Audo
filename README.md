@@ -5,3 +5,4 @@ Build dependencies
 Dependencies
    * Qt 4
    * libsndfile
+   * Jack

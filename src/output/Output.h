@@ -1,3 +1,5 @@
+#pragma once
+
 #include "model/Buffer.h"
 
 class Output {

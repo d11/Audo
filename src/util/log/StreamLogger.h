@@ -1,3 +1,5 @@
+#pragma once
+
 #include "util/log/Logger.h"
 
 class StreamLogger : public Logger{

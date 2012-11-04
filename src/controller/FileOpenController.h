@@ -1,5 +1,4 @@
-#ifndef _FILEOPENCONTROLLER_H_
-#define _FILEOPENCONTROLLER_H_
+#pragma once
 
 #include "ActionController.h"
 #include <QMdiArea>
@@ -15,4 +14,3 @@ class FileOpenController : public ActionController {
       FileOpenController(QAction &action, QMdiArea &mdiMain, BufferPool & bufferPool);
       void react();
 };
-#endif /* FILEOPENCONTROLLER_H_ */

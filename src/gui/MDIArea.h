@@ -1,5 +1,4 @@
-#ifndef _AUMDIAREA_H_
-#define _AUMDIAREA_H_
+#pragma once
 
 #include <QtGui>
 #include <QMdiArea>
@@ -13,5 +12,3 @@ class MdiArea : public QMdiArea
 	private:
 		
 };
-
-#endif /* _AUMDIAREA_H_ */

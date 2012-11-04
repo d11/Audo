@@ -1,5 +1,4 @@
-#ifndef _STANDARDBUFFER_H_
-#define _STANDARDBUFFER_H_
+#pragma once
 
 #include "Buffer.h"
 #include <QString>
@@ -16,4 +15,3 @@ class StandardBuffer : public Buffer {
 		long frames;
       double *data;
 };
-#endif /* _STANDARDBUFFER_H_ */

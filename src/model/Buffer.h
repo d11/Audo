@@ -1,5 +1,4 @@
-#ifndef _BUFFER_H_
-#define _BUFFER_H_
+#pragma once
 
 #include <cstring>
 #include <QString>
@@ -36,4 +35,3 @@ class Buffer
       virtual double getSample(long index) = 0;
 };
 
-#endif /* _BUFFER_H_ */

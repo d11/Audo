@@ -1,5 +1,4 @@
-#ifndef _FILENEWCONTROLLER_H_
-#define _FILENEWCONTROLLER_H_
+#pragma once
 
 #include "ActionController.h"
 #include "model/BufferPool.h"
@@ -16,4 +15,3 @@ class FileNewController : public ActionController {
       FileNewController(QAction &action, QMdiArea &mdiMain, BufferPool &bufferPool);
       void react();
 };
-#endif /* FILENEWCONTROLLER_H_ */

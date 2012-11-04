@@ -1,3 +1,5 @@
+#pragma once
+
 // Reference-counting Smart Pointer
 template <typename T>
 class Ref {
