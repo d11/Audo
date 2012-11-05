@@ -5,101 +5,100 @@
 #include <iostream>
 
 void MainWindow::createActions() {
-	fileNewAct = new QAction("&New", this);
-	fileNewAct->setShortcut(tr("Ctrl+N"));
-	fileNewAct->setStatusTip("Create a new file");
+	m_fileNewAct = new QAction("&New", this);
+	m_fileNewAct->setShortcut(tr("Ctrl+N"));
+	m_fileNewAct->setStatusTip("Create a new file");
    BufferPool bufferPool; // TODO
-   fileNewController = new FileNewController(*fileNewAct, *mdiMain, bufferPool);
+   m_fileNewController = new FileNewController(*m_fileNewAct, *m_mdiMain, bufferPool);
 
-	fileOpenAct = new QAction("&Open", this);
-	fileOpenAct->setShortcut(tr("Ctrl+O")); 
-	fileOpenAct->setStatusTip("Open an existing file");
-//   connect(fileOpenAct, SIGNAL(triggered()), this, SLOT(open()));
-   fileOpenController = new FileOpenController(*fileOpenAct, *mdiMain, bufferPool);
+	m_fileOpenAct = new QAction("&Open", this);
+	m_fileOpenAct->setShortcut(tr("Ctrl+O")); 
+	m_fileOpenAct->setStatusTip("Open an existing file");
+   m_fileOpenController = new FileOpenController(*m_fileOpenAct, *m_mdiMain, bufferPool);
 
-	fileSaveAct = new QAction("&Save", this);
-	fileSaveAct->setShortcut(tr("Ctrl+S")); 
-	fileSaveAct->setStatusTip("Save the file to disk");
-	connect(fileSaveAct, SIGNAL(triggered()), this, SLOT(save()));
+	m_fileSaveAct = new QAction("&Save", this);
+	m_fileSaveAct->setShortcut(tr("Ctrl+S")); 
+	m_fileSaveAct->setStatusTip("Save the file to disk");
+	connect(m_fileSaveAct, SIGNAL(triggered()), this, SLOT(save()));
 
-	fileSaveAsAct = new QAction("Save &As", this);
-	fileSaveAsAct->setShortcut(tr("Ctrl+Shift+A")); 
-	fileSaveAsAct->setStatusTip("Save the file with new name");
-	connect(fileSaveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
+	m_fileSaveAsAct = new QAction("Save &As", this);
+	m_fileSaveAsAct->setShortcut(tr("Ctrl+Shift+A")); 
+	m_fileSaveAsAct->setStatusTip("Save the file with new name");
+	connect(m_fileSaveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-	fileExitAct = new QAction("E&xit", this);
-	fileExitAct->setShortcut(tr("Ctrl+Q"));
-	fileExitAct->setStatusTip("Exit the application");
-	connect(fileExitAct, SIGNAL(triggered()), this, SLOT(close()));
+	m_fileExitAct = new QAction("E&xit", this);
+	m_fileExitAct->setShortcut(tr("Ctrl+Q"));
+	m_fileExitAct->setStatusTip("Exit the application");
+	connect(m_fileExitAct, SIGNAL(triggered()), this, SLOT(close()));
 
-	editCutAct = new QAction("Cu&t", this);
-	editCutAct->setShortcut(tr("Ctrl+X")); 
-	editCutAct->setStatusTip("Cut the selection to the clipboard");
-	connect(editCutAct, SIGNAL(triggered()), this, SLOT(cut()));
+	m_editCutAct = new QAction("Cu&t", this);
+	m_editCutAct->setShortcut(tr("Ctrl+X")); 
+	m_editCutAct->setStatusTip("Cut the selection to the clipboard");
+	connect(m_editCutAct, SIGNAL(triggered()), this, SLOT(cut()));
 
-	editCopyAct = new QAction("&Copy", this);
-	editCopyAct->setShortcut(tr("Ctrl+C")); 
-	editCopyAct->setStatusTip("Copy the selection to the clipboard");
-	connect(editCopyAct, SIGNAL(triggered()), this, SLOT(copy()));
+	m_editCopyAct = new QAction("&Copy", this);
+	m_editCopyAct->setShortcut(tr("Ctrl+C")); 
+	m_editCopyAct->setStatusTip("Copy the selection to the clipboard");
+	connect(m_editCopyAct, SIGNAL(triggered()), this, SLOT(copy()));
 
-	editPasteAct = new QAction("&Paste", this);
-	editPasteAct->setShortcut(tr("Ctrl+V")); 
-	editPasteAct->setStatusTip("Paste the contents of the clipboard");
-	connect(editPasteAct, SIGNAL(triggered()), this, SLOT(paste()));
+	m_editPasteAct = new QAction("&Paste", this);
+	m_editPasteAct->setShortcut(tr("Ctrl+V")); 
+	m_editPasteAct->setStatusTip("Paste the contents of the clipboard");
+	connect(m_editPasteAct, SIGNAL(triggered()), this, SLOT(paste()));
 
-	editCropAct = new QAction("C&rop", this);
-	editCropAct->setShortcut(tr("Ctrl+R")); 
-	editCropAct->setStatusTip("Remove everything apart from the selection");
-	connect(editCropAct, SIGNAL(triggered()), this, SLOT(crop()));
+	m_editCropAct = new QAction("C&rop", this);
+	m_editCropAct->setShortcut(tr("Ctrl+R")); 
+	m_editCropAct->setStatusTip("Remove everything apart from the selection");
+	connect(m_editCropAct, SIGNAL(triggered()), this, SLOT(crop()));
 
-	editSilenceAct = new QAction("&Silence", this);
-	editSilenceAct->setShortcut(tr("Ctrl+_")); 
-	editSilenceAct->setStatusTip("Set the selection to silence");
-	connect(editSilenceAct, SIGNAL(triggered()), this, SLOT(silence()));
+	m_editSilenceAct = new QAction("&Silence", this);
+	m_editSilenceAct->setShortcut(tr("Ctrl+_")); 
+	m_editSilenceAct->setStatusTip("Set the selection to silence");
+	connect(m_editSilenceAct, SIGNAL(triggered()), this, SLOT(silence()));
 
 }
 
 void MainWindow::createFileMenu() {
-	fileMenu = menuBar->addMenu("&File");
-	fileMenu->addAction(fileNewAct);
-	fileMenu->addAction(fileOpenAct);
-	fileMenu->addAction(fileSaveAct);
-	fileMenu->addAction(fileSaveAsAct);
-	fileMenu->addAction(fileExitAct);
+	m_fileMenu = m_menuBar->addMenu("&File");
+	m_fileMenu->addAction(m_fileNewAct);
+	m_fileMenu->addAction(m_fileOpenAct);
+	m_fileMenu->addAction(m_fileSaveAct);
+	m_fileMenu->addAction(m_fileSaveAsAct);
+	m_fileMenu->addAction(m_fileExitAct);
 }
 
 void MainWindow::createEditMenu() {
-	editMenu = menuBar->addMenu("&Edit");
-	editMenu->addAction(editCutAct);
-	editMenu->addAction(editCopyAct);
-	editMenu->addAction(editPasteAct);
-	editMenu->addAction(editCropAct);
-	editMenu->addAction(editSilenceAct);
+	m_editMenu = m_menuBar->addMenu("&Edit");
+	m_editMenu->addAction(m_editCutAct);
+	m_editMenu->addAction(m_editCopyAct);
+	m_editMenu->addAction(m_editPasteAct);
+	m_editMenu->addAction(m_editCropAct);
+	m_editMenu->addAction(m_editSilenceAct);
 }
 
 void MainWindow::createMenuBar() {
-	menuBar = new QMenuBar(this);
-	setMenuBar(menuBar);
+	m_menuBar = new QMenuBar(this);
+	setMenuBar(m_menuBar);
 }
 
 void MainWindow::createFileToolBar() {
-	fileToolBar = new QToolBar(this);
-	fileToolBar->addAction(fileNewAct);
-	fileToolBar->addAction(fileOpenAct);
-	fileToolBar->addAction(fileSaveAct);
-	fileToolBar->addAction(fileSaveAsAct);
-	fileToolBar->addAction(fileExitAct);
-	addToolBar(fileToolBar);
+	m_fileToolBar = new QToolBar(this);
+	m_fileToolBar->addAction(m_fileNewAct);
+	m_fileToolBar->addAction(m_fileOpenAct);
+	m_fileToolBar->addAction(m_fileSaveAct);
+	m_fileToolBar->addAction(m_fileSaveAsAct);
+	m_fileToolBar->addAction(m_fileExitAct);
+	addToolBar(m_fileToolBar);
 }
 
 void MainWindow::createEditToolBar() {
-	editToolBar = new QToolBar(this);
-	editToolBar->addAction(editCutAct);
-	editToolBar->addAction(editCopyAct);
-	editToolBar->addAction(editPasteAct);
-	editToolBar->addAction(editCropAct);
-	editToolBar->addAction(editSilenceAct);
-	addToolBar(editToolBar);
+	m_editToolBar = new QToolBar(this);
+	m_editToolBar->addAction(m_editCutAct);
+	m_editToolBar->addAction(m_editCopyAct);
+	m_editToolBar->addAction(m_editPasteAct);
+	m_editToolBar->addAction(m_editCropAct);
+	m_editToolBar->addAction(m_editSilenceAct);
+	addToolBar(m_editToolBar);
 }
 
 //void MainWindow::open() { std::cout << "'open' not implemented" << std::endl; }
@@ -115,38 +114,38 @@ void MainWindow::silence() { std::cout << "'silence' not implemented" << std::en
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	resize(800, 600);
-	mdiMain = new MdiArea(this);
+	m_mdiMain = new MdiArea(this);
 	createActions();
 	createFileToolBar();
 	createEditToolBar();
 	createMenuBar();
 	createFileMenu();
 	createEditMenu();
-	setCentralWidget(mdiMain);
+	setCentralWidget(m_mdiMain);
 	setStatusBar(statusBar());
 
-	//Qt::Object.connect(fileToolBar, "actionTriggered(
+	//Qt::Object.connect(m_fileToolBar, "actionTriggered(
 
 }
 
 MainWindow::~MainWindow()
 {
-	delete fileNewAct;
-	delete fileOpenAct;
-	delete fileSaveAct;
-	delete fileSaveAsAct;
-	delete fileExitAct;
-	delete editCutAct;
-	delete editCopyAct;
-	delete editPasteAct;
-	delete editCropAct;
-	delete editSilenceAct;
-	delete fileMenu;
-	delete editMenu;
-	delete menuBar;
-	delete fileToolBar;
-	delete editToolBar;
-	delete mdiMain;
-   delete fileNewController;
-   delete fileOpenController;
+	delete m_fileNewAct;
+	delete m_fileOpenAct;
+	delete m_fileSaveAct;
+	delete m_fileSaveAsAct;
+	delete m_fileExitAct;
+	delete m_editCutAct;
+	delete m_editCopyAct;
+	delete m_editPasteAct;
+	delete m_editCropAct;
+	delete m_editSilenceAct;
+	delete m_fileMenu;
+	delete m_editMenu;
+	delete m_menuBar;
+	delete m_fileToolBar;
+	delete m_editToolBar;
+	delete m_mdiMain;
+   delete m_fileNewController;
+   delete m_fileOpenController;
 }
