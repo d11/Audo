@@ -11,17 +11,12 @@
 
 class JackOutput : public Output {
 
-   private:
-      jack_port_t *outputPort;
-      jack_client_t *client;
-      const char **ports;
-      jack_nframes_t sampleRate;
-
    public:
       JackOutput();
       ~JackOutput();
 
    private:
+
       void start();
       void stop();
       void serverShutdown();
@@ -40,8 +35,12 @@ class JackOutput : public Output {
 
       WritableBufferRef getNextOutputBuffer(jack_nframes_t frames);
 
-
       void failure();
+
+      jack_port_t   * m_outputPort;
+      jack_client_t * m_client;
+      const char   ** m_ports;
+      jack_nframes_t  m_sampleRate;
 };
 
 //int main(int argc, char *argv[]) {

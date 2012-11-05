@@ -6,11 +6,6 @@
 #include "util/AudoTypes.h"
 
 class BufferPool {
-   private:
-      std::list<StandardBuffer> freeBuffers;
-      std::list<BufferRef> usedBuffers;
-      const frames_t blockSize;
-
    public:
       // Ctor
       BufferPool();
@@ -33,6 +28,9 @@ class BufferPool {
       // Allocate more space (at least minRequired extra frames)
       void getMoreSpace(frames_t minRequired);
       
-      
       void addBuffer();
+
+      std::list<StandardBuffer> m_freeBuffers;
+      std::list<BufferRef>      m_usedBuffers;
+      const frames_t            m_blockSize;
 };

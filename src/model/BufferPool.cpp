@@ -6,14 +6,13 @@
 #include "StandardBuffer.h"
 
 BufferPool::BufferPool()
-   : blockSize(1024) {
-
-}
+ : m_blockSize(1024)
+{ }
 
 BufferPool::~BufferPool() { }
 
 std::list<BufferRef> BufferPool::getBuffers() {
-   return usedBuffers;
+   return m_usedBuffers;
 }
 
 BufferRef BufferPool::getNewBuffer(frames_t size) {
@@ -32,7 +31,7 @@ BufferRef BufferPool::getNewBufferFromFile(QString fileName) {
 }
 
 void BufferPool::getMoreSpace(frames_t minRequired) {
-   int buffersNeeded = minRequired / blockSize + 1;
+   int buffersNeeded = minRequired / m_blockSize + 1;
    for (int i = 0; i < buffersNeeded; ++i)
    {
       addBuffer();
@@ -42,7 +41,7 @@ void BufferPool::getMoreSpace(frames_t minRequired) {
 
 void BufferPool::addBuffer() {
    sample_t sampleRate = 44100; // TODO
-   StandardBuffer *newBuffer = new StandardBuffer(blockSize, sampleRate, "");
-   freeBuffers.push_front(*newBuffer); // TODO don't copy! use a BufferRef ?
+   StandardBuffer *newBuffer = new StandardBuffer(m_blockSize, sampleRate, "");
+   m_freeBuffers.push_front(*newBuffer); // TODO don't copy! use a BufferRef ?
  
 }
