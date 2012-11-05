@@ -25,7 +25,7 @@ WaveDisplay::~WaveDisplay() { }
 
 void WaveDisplay::setBuffer(BufferRef buffer) {
    this->buffer = buffer;
-   if (!buffer->getNumberOfSamples())
+   if (buffer->getNumberOfSamples())
    {
       resize(buffer->getNumberOfSamples()/scale, 100); // TODO don't hardcode scale factor
    }
