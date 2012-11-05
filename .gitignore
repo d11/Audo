@@ -12,3 +12,5 @@ cmake_install.cmake
 AudoTests
 libAudoLib,a
 libAudoLib.a
+CTestTestfile.cmake
+Testing/

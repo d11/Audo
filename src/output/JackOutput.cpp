@@ -3,7 +3,7 @@
 #include "model/StandardBuffer.h"
 #include <sstream>
 
-JackOutput::JackOutput() : StreamLogger(std::cerr) {
+JackOutput::JackOutput() {
    start();
 }
 
@@ -12,10 +12,10 @@ JackOutput::~JackOutput() {
 }
 
 // Return a reference to a Buffer that should be filled with output
-BufferRef JackOutput::getNextOutputBuffer(jack_nframes_t frames)
+WritableBufferRef JackOutput::getNextOutputBuffer(jack_nframes_t frames)
 {
    jack_default_audio_sample_t *out = (jack_default_audio_sample_t *) jack_port_get_buffer (outputPort, frames);
-   return BufferRef(new StandardBuffer(frames, 44100, "", out));
+   return WritableBufferRef(new WritableBuffer(frames, 44100, "", out));
 }
 
 void JackOutput::start()  {
@@ -54,12 +54,6 @@ void JackOutput::start()  {
    // connected to jack, ready for output
 }
 
-void JackOutput::fillBuffer(BufferRef buffer)
-{
-   long sampleCount = buffer->getNumberOfSamples();
-
-   // TODO fill buffer with samples
-}
 
 void JackOutput::serverShutdown()
 {
@@ -79,7 +73,7 @@ void JackOutput::shutdownCallback(void *arg) {
 int JackOutput::processCallback(jack_nframes_t frames, void *arg)
 {
    JackOutput *output = static_cast<JackOutput*>(arg);
-   BufferRef buffer = output->getNextOutputBuffer(frames);
+   WritableBufferRef buffer(output->getNextOutputBuffer(frames));
    output->fillBuffer(buffer);
    return 0;
 }

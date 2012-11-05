@@ -27,7 +27,9 @@ set(AudoLib_SOURCES
    ./src/model/EmptyBuffer.cpp
    ./src/model/SampleSource.cpp
    ./src/model/StandardBuffer.cpp
+   ./src/model/WritableBuffer.cpp
    ./src/output/JackOutput.cpp
+   ./src/output/Output.cpp
    ./src/view/WaveDisplay.cpp
 )
 
@@ -117,3 +119,6 @@ include_directories(${AudoTests_HEADERS})
 add_executable(AudoTests ${AudoTests_SOURCES} ${AudoTests_HEADERS})
 target_link_libraries(AudoTests ${AudoTests_LIBS})
 target_link_libraries(AudoTests AudoLib)
+
+enable_testing()
+add_test(MainTests AudoTests)

@@ -13,6 +13,7 @@ class StandardBuffer : public Buffer {
       void copyData(void *source, long startPos, long frameCount);
 
 	protected:
-		long frames;
-      float *data;
+		long mFrames;
+      float *mData;
+      bool m_owned;
 };

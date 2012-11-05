@@ -2,15 +2,14 @@
 
 #include <cmath>
 #include <iostream>
-
-#include <jack/jack.h>
-#include "util/log/StreamLogger.h"
-#include "output/Output.h"
-#include "model/Buffer.h"
-
 #include <exception>
 
-class JackOutput : public StreamLogger, Output {
+#include <jack/jack.h>
+
+#include "output/Output.h"
+#include "model/WritableBuffer.h"
+
+class JackOutput : public Output {
 
    private:
       jack_port_t *outputPort;
@@ -21,8 +20,6 @@ class JackOutput : public StreamLogger, Output {
    public:
       JackOutput();
       ~JackOutput();
-
-
 
    private:
       void start();
@@ -41,9 +38,8 @@ class JackOutput : public StreamLogger, Output {
       //    zero on success, non-zero on error
       static int processCallback(jack_nframes_t frames, void *arg);
 
-      BufferRef getNextOutputBuffer(jack_nframes_t frames);
+      WritableBufferRef getNextOutputBuffer(jack_nframes_t frames);
 
-      void fillBuffer(BufferRef buffer);
 
       void failure();
 };
