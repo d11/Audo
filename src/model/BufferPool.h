@@ -14,7 +14,7 @@ class BufferPool {
       ~BufferPool();
 
       // Provide a silent buffer of the specified size
-      BufferRef getNewBuffer(frames_t size);
+      BufferRef getNewBuffer(t_audoNSamples size);
 
       BufferRef getNewBufferFromFile(QString fileName);
 
@@ -26,11 +26,11 @@ class BufferPool {
 
    private:
       // Allocate more space (at least minRequired extra frames)
-      void getMoreSpace(frames_t minRequired);
+      void getMoreSpace(t_audoNSamples minRequired);
       
       void addBuffer();
 
       std::list<StandardBuffer> m_freeBuffers;
       std::list<BufferRef>      m_usedBuffers;
-      const frames_t            m_blockSize;
+      const t_audoNSamples      m_blockSize;
 };

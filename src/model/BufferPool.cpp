@@ -15,8 +15,8 @@ std::list<BufferRef> BufferPool::getBuffers() {
    return m_usedBuffers;
 }
 
-BufferRef BufferPool::getNewBuffer(frames_t size) {
-   sample_t sampleRate = 44100; // TODO
+BufferRef BufferPool::getNewBuffer(t_audoNSamples size) {
+   t_audoSample sampleRate = 44100; // TODO
    StandardBuffer *buffer = new StandardBuffer(size, sampleRate, "");
    return BufferRef(buffer);
 }
@@ -30,7 +30,7 @@ BufferRef BufferPool::getNewBufferFromFile(QString fileName) {
    return reader.loadAudio(fileName);
 }
 
-void BufferPool::getMoreSpace(frames_t minRequired) {
+void BufferPool::getMoreSpace(t_audoNSamples minRequired) {
    int buffersNeeded = minRequired / m_blockSize + 1;
    for (int i = 0; i < buffersNeeded; ++i)
    {
@@ -40,7 +40,7 @@ void BufferPool::getMoreSpace(frames_t minRequired) {
 
 
 void BufferPool::addBuffer() {
-   sample_t sampleRate = 44100; // TODO
+   t_audoSample sampleRate = 44100; // TODO
    StandardBuffer *newBuffer = new StandardBuffer(m_blockSize, sampleRate, "");
    m_freeBuffers.push_front(*newBuffer); // TODO don't copy! use a BufferRef ?
  

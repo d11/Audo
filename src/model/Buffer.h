@@ -2,36 +2,41 @@
 
 #include <cstring>
 #include <QString>
+#include "util/AudoTypes.h"
 
 /*
  *  Buffer: Abstract Base Class
  */
 class Buffer
 {
-	protected:
-      // A descriptive name for the buffer
-		QString name;
+public:
+   // Constructor
+   Buffer(t_audoNSamples sampleRate, const QString & name);
 
-      // Number of samples per second
-		int sampleRate;
+   // Destructor
+   virtual ~Buffer();
 
-	public:
-      // Constructor
-		Buffer(int sampleRate, QString name);
+   // Duration of the buffer in seconds
+   double getDuration() const;
 
-      // Destructor
-		virtual ~Buffer();
+   // The name of the buffer
+   const QString& getName() const;
 
-      // Duration of the buffer in seconds
-		double getDuration();
+   // Get number of samples per second
+   virtual t_audoNSamples getSampleRate() const;
 
-      // The name of the buffer
-		const QString& getName();
+   // Number of samples in the buffer
+   virtual t_audoNSamples getNumberOfSamples() const = 0;
 
-      // Number of samples in the buffer
-      virtual long getNumberOfSamples() = 0;
+   // Get the value at a specific point in the buffer
+   virtual double getSample(t_audoNSamples index) const = 0;
 
-      // Get the value at a specific point in the buffer
-      virtual double getSample(long index) = 0;
+private:
+
+   // A descriptive name for the buffer
+   QString m_name;
+
+   // Number of samples per second
+   t_audoNSamples m_sampleRate;
 };
 

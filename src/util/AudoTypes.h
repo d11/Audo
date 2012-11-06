@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 
-typedef double sample_t;
-typedef uint32_t frames_t;
+typedef double t_audoSample;
+typedef uint32_t t_audoNSamples;
+typedef double t_audoTime;
 

@@ -4,16 +4,16 @@
 #include <QString>
 
 class StandardBuffer : public Buffer {
-	public:
-		StandardBuffer(long frameCount, int sampleRate, QString name);
-      StandardBuffer(long frameCount, int sampleRate, QString name, float *data);
-		~StandardBuffer();
-      long getNumberOfSamples();
-      double getSample(long index);
-      void copyData(void *source, long startPos, long frameCount);
+public:
+   StandardBuffer(t_audoNSamples frameCount, int sampleRate, QString name);
+   StandardBuffer(t_audoNSamples frameCount, int sampleRate, QString name, float *data);
+   virtual ~StandardBuffer();
+   t_audoNSamples getNumberOfSamples() const;
+   double getSample(t_audoNSamples index) const;
+   void copyData(void *source, t_audoNSamples startPos, t_audoNSamples frameCount);
 
-	protected:
-		long mFrames;
-      float *mData;
-      bool m_owned;
+protected:
+   t_audoNSamples    m_frames;
+   float * m_data;
+   bool    m_owned;
 };

@@ -1,16 +1,18 @@
 #pragma once
 
-#include "Buffer.h"
 #include <QString>
+
+#include "Buffer.h"
+#include "util/AudoTypes.h"
 
 class EmptyBuffer : public Buffer {
 	public:
-		EmptyBuffer(long frameCount, int sampleRate);
-		~EmptyBuffer();
-      long getNumberOfSamples();
-      double getSample(long index);
+		EmptyBuffer(t_audoNSamples frameCount, t_audoNSamples sampleRate);
+		virtual ~EmptyBuffer();
+      t_audoNSamples getNumberOfSamples() const;
+      t_audoSample getSample(t_audoNSamples index) const;
 
 	protected:
-		long frames;
+		t_audoNSamples frames;
 };
 

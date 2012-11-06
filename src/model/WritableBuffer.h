@@ -6,8 +6,8 @@
 class WritableBuffer : public StandardBuffer
 {
 public:
-   WritableBuffer(long frameCount, int sampleRate, QString name);
-   WritableBuffer(long frameCount, int sampleRate, QString name, float *data);
+   WritableBuffer(t_audoNSamples frameCount, t_audoNSamples sampleRate, QString name);
+   WritableBuffer(t_audoNSamples frameCount, t_audoNSamples sampleRate, QString name, float *data);
 
    float *getDataPointer();
 };

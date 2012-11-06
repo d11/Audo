@@ -50,6 +50,7 @@ set(AudoLib_HEADERS
    ./src/model/Ref.h
    ./src/model/SampleSource.h
    ./src/model/StandardBuffer.h
+   ./src/model/SineWaveSamples.h
    ./src/output/JackOutput.h
    ./src/output/Output.h
    ./src/util/AudoTypes.h

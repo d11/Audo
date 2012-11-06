@@ -4,6 +4,7 @@
 #include "model/WritableBuffer.h"
 #include "model/SampleSource.h"
 #include "util/log/StreamLogger.h"
+#include "util/AudoTypes.h"
 
 class Output : public StreamLogger {
    public:
@@ -19,5 +20,5 @@ class Output : public StreamLogger {
 
    private:
       SampleSource::ref m_sampleSource;
-
+      t_audoTime m_time;
 };

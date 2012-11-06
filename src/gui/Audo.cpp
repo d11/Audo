@@ -3,7 +3,9 @@
 
 #include "output/JackOutput.h"
 
-//#include "ABuffer.h"
+#include "model/Ref.h"
+
+#include "model/SineWaveSamples.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +19,8 @@ int main(int argc, char *argv[])
 	mainwin.show();
 
    JackOutput jackOutput;
+   SampleSource::ref sampleSource(new SineWaveSamples(440.0, 0.0));
+   jackOutput.setSampleSource( sampleSource );
 
 	return app.exec();
 }
