@@ -1,7 +1,6 @@
 TODO
 
 Bugs
-* Use a naming convention for member vars!!
 * Use foredecs where possible; remove unnecessary headers
 * Sort out any memory leaks
 * Add license declaration
