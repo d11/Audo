@@ -117,7 +117,7 @@ set(AudoTests_HEADERS ${CPPUNIT_INCLUDE_DIR})
 
 include_directories(${AudoTests_HEADERS})
 
-add_executable(AudoTests ${AudoTests_SOURCES} ${AudoTests_HEADERS})
+add_executable(AudoTests ${AudoTests_SOURCES})
 target_link_libraries(AudoTests ${AudoTests_LIBS})
 target_link_libraries(AudoTests AudoLib)
 

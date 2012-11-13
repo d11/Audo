@@ -9,6 +9,8 @@ public:
    WritableBuffer(t_audoNSamples frameCount, t_audoNSamples sampleRate, QString name);
    WritableBuffer(t_audoNSamples frameCount, t_audoNSamples sampleRate, QString name, float *data);
 
+   virtual ~WritableBuffer() { };
+
    float *getDataPointer();
 };
 
